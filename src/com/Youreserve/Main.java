@@ -6,11 +6,20 @@ import java.util.Scanner;
 
 public class Main {
 
+    static ArrayList<Room> rooms = new ArrayList<>();
+    static ArrayList<Reservation> reservations = new ArrayList<>();
+
+
     public static void main(String[] args) {
 
-        ArrayList<Room> rooms = new ArrayList<>();
-        ArrayList<Reservation> reservations = new ArrayList<>();
+
         Scanner scanner = new Scanner(System.in);
+
+        rooms.add(new Room("5A", "Single"));
+        rooms.add(new Room("5B", "Single"));
+        rooms.add(new Room("6A", "Double"));
+        rooms.add(new Room("6B", "Double"));
+        rooms.add(new Room("SS", "Suite"));
 
 
         while (true) {
@@ -26,6 +35,11 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("View Rooms");
+                    listRooms();
+                    int option = ReserveRoom.chooseOption();
+                    if (option == 1) {
+                        ReserveRoom.createReservation(scanner);
+                    }
                     break;
                 case 2:
                     System.out.println("View Reservations");
@@ -40,6 +54,15 @@ public class Main {
                     System.out.println("Invalid choice");
             }
         }
+
+
+
+    }
+    private static void listRooms() {
+        for (Room room : rooms) {
+            System.out.println(room);
+        }
+
 
     }
 }

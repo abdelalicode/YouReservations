@@ -32,6 +32,6 @@ public class Room {
     }
 
     public String toString() {
-        return roomNumber + " " + roomType;
+        return "Room number: " +roomNumber + " Type: " + roomType + " Available: " + isAvailable;
     }
 }
