@@ -15,11 +15,10 @@ public class Main {
 
         while (true) {
             System.out.println("\tHotel Reservation System");
-            System.out.println("1. Create Reservation");
-            System.out.println("2. Cancel Reservation");
-            System.out.println("3. View Reservations");
-            System.out.println("4. View Rooms");
-            System.out.println("5. Exit");
+            System.out.println("1. View Rooms");
+            System.out.println("2. View Reservations");
+            System.out.println("3. Cancel Reservation");
+            System.out.println("4. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -35,8 +34,6 @@ public class Main {
                     System.out.println("Cancel Reservation");
                     break;
                 case 4:
-                    break;
-                case 5:
                     System.out.println("Exit");
                     return;
                 default:
