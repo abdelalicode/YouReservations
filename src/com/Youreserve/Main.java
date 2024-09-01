@@ -1,60 +1,47 @@
 package com.Youreserve;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
-class Person {
-    private String name;
-    private int age;
-
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String toString() {
-        return "Person {name=" + name + ", age=" + age + "}";
-    }
-}
-class Odd {
-    public int add(int a , int b) {
-        return a+b;
-    }
-}
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Map<Integer, Person> peopleMap = new HashMap<>();
-
-        peopleMap.put(1, new Person("John Doe", 18));
-        peopleMap.put(2, new Person("Jane Doe", 19));
-        peopleMap.put(3, new Person("Jack Doe", 20));
+        ArrayList<Room> rooms = new ArrayList<>();
+        ArrayList<Reservation> reservations = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
 
 
-        Person person1 = peopleMap.get(1);
-        System.out.println(person1);
+        while (true) {
+            System.out.println("\tHotel Reservation System");
+            System.out.println("1. Create Reservation");
+            System.out.println("2. Cancel Reservation");
+            System.out.println("3. View Reservations");
+            System.out.println("4. View Rooms");
+            System.out.println("5. Exit");
+            System.out.print("Choose an option: ");
 
-        for (Map.Entry<Integer, Person> entry : peopleMap.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("View Rooms");
+                    break;
+                case 2:
+                    System.out.println("View Reservations");
+                    break;
+                case 3:
+                    System.out.println("Cancel Reservation");
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    System.out.println("Exit");
+                    return;
+                default:
+                    System.out.println("Invalid choice");
+            }
         }
 
     }
