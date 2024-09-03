@@ -38,13 +38,20 @@ public class Main {
                     if (option == 1) {
                         ReserveRoom.createReservation(scanner);
                     }
+                    pause(scanner);
                     break;
                 case 2:
                     System.out.println("View Reservations");
                     ReserveRoom.listReservations();
+                    pause(scanner);
                     break;
                 case 3:
                     System.out.println("Cancel Reservation");
+                    System.out.print("Enter the Reservation ID to cancel: ");
+                    scanner.nextLine();
+                    String reservationID = scanner.nextLine();
+                    ReserveRoom.cancelReservation(reservationID);
+                    pause(scanner);
                     break;
                 case 4:
                     System.out.println("Exit");
@@ -63,5 +70,11 @@ public class Main {
         }
 
 
+    }
+
+    private static void pause(Scanner scanner) {
+        System.out.println("\nPress Enter to continue...");
+        scanner.nextLine();
+        scanner.nextLine();
     }
 }

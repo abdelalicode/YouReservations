@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class Reservation {
 
-        private String reservationID;
+        final private String reservationID;
         private User user;
         private Room room;
 
@@ -19,7 +19,7 @@ public class Reservation {
         }
 
 
-        public int getReservationID() {
+        public String getReservationID() {
                 return reservationID;
         }
 
@@ -42,15 +42,16 @@ public class Reservation {
                 this.room = room;
         }
 
-        @Override
+
+
         public String toString() {
                 return "    Reservation Details:\n" +
-                        "-------------------------\n" +
+                        "-------------------------------------------------\n" +
                         "   Reservation ID    : " + reservationID + "\n" +
                         "   Room Number       : " + room.getRoomNumber() + "\n" +
                         "   Room Type         : " + room.getRoomType() + "\n" +
                         "   Reserved By       : " + user.getName() + "\n" +
-                        "-------------------------";
+                        "---------------------------------------------------";
         }
 
 }

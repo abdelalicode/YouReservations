@@ -63,4 +63,20 @@ public class ReserveRoom {
             }
         }
     }
+
+    public static boolean cancelReservation(String reservationID) {
+        for (Reservation reservation : reservations) {
+            if (reservation.getReservationID().equals(reservationID)) {
+                reservations.remove(reservation);
+
+                Room room = reservation.getRoom();
+                room.setAvailable(true);
+
+                System.out.println("Reservation with ID " + reservationID + " has been canceled");
+                return true;
+            }
+        }
+        System.out.println("No reservation found with ID " + reservationID);
+        return false;
+    }
 }
