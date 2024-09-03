@@ -7,11 +7,9 @@ import java.util.Scanner;
 public class Main {
 
     static ArrayList<Room> rooms = new ArrayList<>();
-    static ArrayList<Reservation> reservations = new ArrayList<>();
 
 
     public static void main(String[] args) {
-
 
         Scanner scanner = new Scanner(System.in);
 
@@ -43,6 +41,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("View Reservations");
+                    ReserveRoom.listReservations();
                     break;
                 case 3:
                     System.out.println("Cancel Reservation");
