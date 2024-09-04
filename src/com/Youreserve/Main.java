@@ -25,7 +25,8 @@ public class Main {
             System.out.println("1. View Rooms");
             System.out.println("2. View Reservations");
             System.out.println("3. Cancel Reservation");
-            System.out.println("4. Exit");
+            System.out.println("4. Update Reservation");
+            System.out.println("5. Exit");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -54,6 +55,14 @@ public class Main {
                     pause(scanner);
                     break;
                 case 4:
+                    System.out.println("Update Reservation");
+                    System.out.print("Enter the Reservation ID to update: ");
+                    scanner.nextLine();
+                    String updateReservationID = scanner.nextLine();
+                    ReserveRoom.updateReservation(updateReservationID, scanner);
+                    pause(scanner);
+                    break;
+                case 5:
                     System.out.println("Exit");
                     return;
                 default:
