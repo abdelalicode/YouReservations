@@ -1,12 +1,16 @@
 package com.Youreserve;
 
 
+import com.Youreserve.model.Room;
+import com.Youreserve.service.ReserveRoom;
+
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
-    static ArrayList<Room> rooms = new ArrayList<>();
+    public static ArrayList<Room> rooms = new ArrayList<>();
 
 
     public static void main(String[] args) {
@@ -20,7 +24,7 @@ public class Main {
         rooms.add(new Room("SS", "Suite"));
 
 
-        while (true) {
+        do {
             System.out.println("\tHotel Reservation System");
             System.out.println("1. View Rooms");
             System.out.println("2. View Reservations");
@@ -29,7 +33,14 @@ public class Main {
             System.out.println("5. Exit");
             System.out.print("Choose an option: ");
 
-            int choice = scanner.nextInt();
+            int choice = -1;
+            try {
+                choice = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+                scanner.nextLine();
+                continue;
+            }
 
             switch (choice) {
                 case 1:
@@ -68,12 +79,12 @@ public class Main {
                 default:
                     System.out.println("Invalid choice");
             }
-        }
+        }while (true);
 
 
 
     }
-    private static void listRooms() {
+    public static void listRooms() {
         for (Room room : rooms) {
             System.out.println(room);
         }

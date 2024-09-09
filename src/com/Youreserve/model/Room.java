@@ -1,6 +1,4 @@
-package com.Youreserve;
-
-import java.util.ArrayList;
+package com.Youreserve.model;
 
 public class Room {
 

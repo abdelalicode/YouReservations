@@ -1,12 +1,20 @@
-package com.Youreserve;
+package com.Youreserve.service;
+
+import com.Youreserve.Main;
+import com.Youreserve.model.Reservation;
+import com.Youreserve.model.Room;
+import com.Youreserve.model.User;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReserveRoom {
 
     static ArrayList<Reservation> reservations = new ArrayList<>();
+
 
     public static int chooseOption() {
 
@@ -16,9 +24,9 @@ public class ReserveRoom {
         Scanner scanner = new Scanner(System.in);
         int option = scanner.nextInt();
 
-
         return option;
     }
+
 
     public static void createReservation(Scanner scanner) {
         System.out.println("Please enter the room number you would like to reserve:");
@@ -37,13 +45,40 @@ public class ReserveRoom {
 
         User user = new User(clientName);
 
-        System.out.print("Enter start date (yyyy-MM-dd): ");
-        String startDate = scanner.nextLine();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate checkIn = null;
+        LocalDate checkOut = null;
 
-        System.out.print("Enter end date (yyyy-MM-dd): ");
-        String endDate = scanner.nextLine();
+        while (checkIn == null) {
+            System.out.print("Enter checkIn date dd-MM-yyyy: ");
+            String startDate = scanner.nextLine();
+            try {
+                checkIn = LocalDate.parse(startDate, dtf);
+                if (checkIn.isBefore(LocalDate.now())) {
+                    System.out.println("CheckIn Date invalid");
+                    checkIn = null;
+                }
+                } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. dd-MM-yyyy format.");
+            }
+        }
 
-        Reservation reservation = new Reservation(user, roomToReserve, startDate, endDate);
+        while (checkOut == null) {
+            System.out.print("Enter checkOut date dd-MM-yyyy: ");
+            String endDate = scanner.nextLine();
+            try {
+                checkOut = LocalDate.parse(endDate, dtf);
+                if (checkOut.isBefore(checkIn)) {
+                    System.out.println("Check-out date cannot be before check-in date");
+                    checkOut = null;
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("Invalid date format. dd-MM-yyyy format.");
+            }
+        }
+
+
+        Reservation reservation = new Reservation(user, roomToReserve, checkIn, checkOut);
         reservations.add(reservation);
 
         roomToReserve.setAvailable(false);
@@ -59,6 +94,7 @@ public class ReserveRoom {
         }
         return null;
     }
+
 
 
     public static void listReservations() {

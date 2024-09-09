@@ -1,4 +1,4 @@
-package com.Youreserve;
+package com.Youreserve.model;
 
 public class User {
 
