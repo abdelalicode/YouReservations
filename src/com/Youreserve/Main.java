@@ -1,100 +1,62 @@
 package com.Youreserve;
 
+import com.Youreserve.service.ReservationService;
 
-import com.Youreserve.model.Room;
-import com.Youreserve.service.ReserveRoom;
-
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
-    public static ArrayList<Room> rooms = new ArrayList<>();
-
-
     public static void main(String[] args) {
-
+        ReservationService service = new ReservationService();
         Scanner scanner = new Scanner(System.in);
 
-        rooms.add(new Room("5A", "Single"));
-        rooms.add(new Room("5B", "Single"));
-        rooms.add(new Room("6A", "Double"));
-        rooms.add(new Room("6B", "Double"));
-        rooms.add(new Room("SS", "Suite"));
-
-
         do {
-            System.out.println("\tHotel Reservation System");
-            System.out.println("1. View Rooms");
-            System.out.println("2. View Reservations");
-            System.out.println("3. Cancel Reservation");
-            System.out.println("4. Update Reservation");
-            System.out.println("5. Exit");
-            System.out.print("Choose an option: ");
-
-            int choice = -1;
-            try {
-                choice = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-                scanner.nextLine();
-                continue;
-            }
+            displayMenu();
+            int choice = getUserChoice(scanner);
 
             switch (choice) {
                 case 1:
-                    System.out.println("View Rooms");
-                    listRooms();
-                    int option = ReserveRoom.chooseOption();
-                    if (option == 1) {
-                        ReserveRoom.createReservation(scanner);
-                    }
-                    pause(scanner);
+                    service.viewRooms();
+                    service.reserveRoom(scanner);
                     break;
                 case 2:
-                    System.out.println("View Reservations");
-                    ReserveRoom.listReservations();
-                    pause(scanner);
+                    service.viewReservations();
                     break;
                 case 3:
-                    System.out.println("Cancel Reservation");
-                    System.out.print("Enter the Reservation ID to cancel: ");
-                    scanner.nextLine();
-                    String reservationID = scanner.nextLine();
-                    ReserveRoom.cancelReservation(reservationID);
-                    pause(scanner);
+                    service.cancelReservation(scanner);
                     break;
                 case 4:
-                    System.out.println("Update Reservation");
-                    System.out.print("Enter the Reservation ID to update: ");
-                    scanner.nextLine();
-                    String updateReservationID = scanner.nextLine();
-                    ReserveRoom.updateReservation(updateReservationID, scanner);
-                    pause(scanner);
+                    service.updateReservation(scanner);
                     break;
                 case 5:
                     System.out.println("Exit");
                     return;
                 default:
-                    System.out.println("Invalid choice");
+                    System.out.println("Invalid choice. Please try again.");
             }
-        }while (true);
-
-
-
+        } while (true);
     }
-    public static void listRooms() {
-        for (Room room : rooms) {
-            System.out.println(room);
+
+    private static void displayMenu() {
+        System.out.println("\tHotel Reservation System");
+        System.out.println("1. View Rooms");
+        System.out.println("2. View Reservations");
+        System.out.println("3. Cancel Reservation");
+        System.out.println("4. Update Reservation");
+        System.out.println("5. Exit");
+        System.out.print("Choose an option: ");
+    }
+
+    private static int getUserChoice(Scanner scanner) {
+        int choice = -1;
+        try {
+            choice = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid number.");
+        } finally {
+            scanner.nextLine(); // Clear the buffer
         }
-
-
-    }
-
-    private static void pause(Scanner scanner) {
-        System.out.println("\nPress Enter to continue...");
-        scanner.nextLine();
-        scanner.nextLine();
+        return choice;
     }
 }

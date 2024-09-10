@@ -79,6 +79,7 @@ public class ReserveRoom {
 
 
         Reservation reservation = new Reservation(user, roomToReserve, checkIn, checkOut);
+
         reservations.add(reservation);
 
         roomToReserve.setAvailable(false);

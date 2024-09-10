@@ -3,19 +3,31 @@ package ressources;
 import java.sql.*;
 
 public class DBconnection {
-    public static void main(String[] args) throws SQLException {
-        String url = "jdbc:postgresql://localhost:5432/youreservation";
-        String user = "postgres";
-        String password = "azerty123";
-        Connection connection = null;
 
+    private static DBconnection instance;
+    private Connection connection;
+    String url = "jdbc:postgresql://localhost:5432/youreservation";
+    String user = "postgres";
+    String password = "azerty123";
+
+    private DBconnection() {
         try {
-            connection = DriverManager.getConnection(url, user, password);
-//            System.out.println("Connected");
+            this.connection = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//    return connection;
     }
+
+    public static DBconnection getInstance() {
+        if (instance == null) {
+            instance = new DBconnection();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
 }
 

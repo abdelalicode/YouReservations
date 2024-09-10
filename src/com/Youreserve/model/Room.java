@@ -2,9 +2,9 @@ package com.Youreserve.model;
 
 public class Room {
 
-    private String roomNumber;
-    private String roomType;
-    private boolean isAvailable;
+    protected String roomNumber;
+    protected String roomType;
+    protected boolean isAvailable;
 
 
     public Room(String roomNumber, String roomType) {
