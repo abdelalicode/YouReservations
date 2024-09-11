@@ -1,5 +1,5 @@
 package com.Youreserve.enums;
 
 public enum BedType {
-    DOUBLE,QUEENSIZE,KINGSIZE
+    SINGLE,DOUBLE,QUEENSIZE,KINGSIZE
 }

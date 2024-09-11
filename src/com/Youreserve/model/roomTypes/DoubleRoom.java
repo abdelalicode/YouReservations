@@ -43,12 +43,15 @@ public class DoubleRoom extends Room {
 
     @Override
     public String toString() {
-        return "DoubleRoom{" +
-                "roomNumber='" + roomNumber + '\'' +
-                ", numberBeds=" + numberBeds +
-                ", isAvailable=" + isAvailable +
-                ", bedtypes=" + bedtypes +
-                ", roomType='" + roomType + '\'' +
-                '}';
+        return  "\t\t--------------------------------"+"\n" +
+                "\t\t**ROOM TYPE**   : " + roomType.toUpperCase() + "\n" +
+                "\t\t--------------------------------"+"\n" +
+                "\t\tRoom Number     : " + roomNumber + "\n" +
+                "\t\tNumber of Beds  : " + numberBeds + "\n" +
+                "\t\tBed Types       : " + bedtypes + "\n" +
+                "\t\tAvailability    : " + (isAvailable ? "Available" : "Occupied") + "\n" +
+                "\t\tRoom Type       : " + roomType + "\n" +
+                "\t\t--------------------------------";
     }
+
 }

@@ -1,5 +1,7 @@
 package com.Youreserve;
 
+import com.Youreserve.repository.RepositoryInterface;
+import com.Youreserve.repository.classes.ReservationRepository;
 import com.Youreserve.service.ReservationService;
 
 import java.util.InputMismatchException;
@@ -8,7 +10,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        ReservationService service = new ReservationService();
+        RepositoryInterface reservationRepository = new ReservationRepository();
+
+        ReservationService service = new ReservationService(reservationRepository);
         Scanner scanner = new Scanner(System.in);
 
         do {
@@ -17,17 +21,22 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    service.viewRooms();
-                    service.reserveRoom(scanner);
+                    service.viewAllRooms();
+                    int option = chooseOption();
+                    if (option == 1) {
+                        service.createReservation(scanner);
+                    }
+//                    service.reserveRoom(scanner);
+                    pause(scanner);
                     break;
                 case 2:
-                    service.viewReservations();
+//                    service.viewReservations();
                     break;
                 case 3:
-                    service.cancelReservation(scanner);
+//                    service.cancelReservation(scanner);
                     break;
                 case 4:
-                    service.updateReservation(scanner);
+//                    service.updateReservation(scanner);
                     break;
                 case 5:
                     System.out.println("Exit");
@@ -55,8 +64,26 @@ public class Main {
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter a valid number.");
         } finally {
-            scanner.nextLine(); // Clear the buffer
+            scanner.nextLine();
         }
         return choice;
+    }
+
+    private static void pause(Scanner scanner) {
+        System.out.println("\nPress Enter to continue...");
+        scanner.nextLine();
+        scanner.nextLine();
+    }
+
+    public static int chooseOption() {
+
+        System.out.println("1 . Do you want to reserve a room?");
+        System.out.println("0 . Go back to main menu");
+
+        Scanner scanner = new Scanner(System.in);
+        int option = scanner.nextInt();
+
+
+        return option;
     }
 }

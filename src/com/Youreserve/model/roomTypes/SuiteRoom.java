@@ -32,4 +32,17 @@ public class SuiteRoom extends Room {
         this.hasBalcony = hasBalcony;
     }
 
+
+    @Override
+    public String toString() {
+        return  "\t\t--------------------------------"+"\n" +
+                "\t\t**ROOM TYPE**   : " + roomType.toUpperCase() + "\n" +
+                "\t\t--------------------------------"+"\n" +
+                "\t\tRoom Number     : " + roomNumber + "\n" +
+                "\t\tLuxury Level    : " + luxuryLevel + "\n" +
+                "\t\tHas Balcony     : " + (hasBalcony ? "Yes" : "No") + "\n" +
+                "\t\tAvailability    : " + (isAvailable ? "Available" : "Occupied") + "\n" +
+                "\t\t--------------------------------";
+    }
+
 }
