@@ -2,10 +2,19 @@ package com.Youreserve.model;
 
 public class Room {
 
+    private int id;
     protected String roomNumber;
     protected String roomType;
     protected boolean isAvailable;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Room(String roomNumber, String roomType) {
         this.roomNumber = roomNumber;
