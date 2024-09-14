@@ -1,4 +1,4 @@
-package com.Youreserve.model;
+package com.Youreserve.entity;
 
 public class Hotel {
 

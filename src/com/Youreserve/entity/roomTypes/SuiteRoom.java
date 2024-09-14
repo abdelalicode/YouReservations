@@ -1,7 +1,7 @@
-package com.Youreserve.model.roomTypes;
+package com.Youreserve.entity.roomTypes;
 
 import com.Youreserve.enums.LuxuryLevel;
-import com.Youreserve.model.Room;
+import com.Youreserve.entity.Room;
 
 public class SuiteRoom extends Room {
 
@@ -9,8 +9,8 @@ public class SuiteRoom extends Room {
     private LuxuryLevel luxuryLevel;
     private boolean hasBalcony;
 
-    public SuiteRoom(String roomNumber, String roomType, int id, LuxuryLevel luxuryLevel, boolean hasBalcony) {
-        super(roomNumber, roomType);
+    public SuiteRoom(String roomNumber, String roomType, double price ,int id, LuxuryLevel luxuryLevel, boolean hasBalcony) {
+        super(roomNumber, roomType , price);
         this.id = id;
         this.luxuryLevel = luxuryLevel;
         this.hasBalcony = hasBalcony;
@@ -35,14 +35,14 @@ public class SuiteRoom extends Room {
 
     @Override
     public String toString() {
-        return  "\t\t--------------------------------"+"\n" +
-                "\t\t**ROOM TYPE**   : " + roomType.toUpperCase() + "\n" +
-                "\t\t--------------------------------"+"\n" +
+        return  "\t\t-----------------------------------------------"+"\n" +
+                "\u001B[33m\t\tROOM TYPE  : " + roomType.toUpperCase() + "\t\tPrice : " + price + "MAD" +  "\n\u001B[0m"+
+                "\t\t-----------------------------------------------"+"\n" +
                 "\t\tRoom Number     : " + roomNumber + "\n" +
                 "\t\tLuxury Level    : " + luxuryLevel + "\n" +
                 "\t\tHas Balcony     : " + (hasBalcony ? "Yes" : "No") + "\n" +
                 "\t\tAvailability    : " + (isAvailable ? "Available" : "Occupied") + "\n" +
-                "\t\t--------------------------------";
+                "\t\t-----------------------------------------------";
     }
 
 }

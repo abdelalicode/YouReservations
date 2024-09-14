@@ -26,17 +26,20 @@ public class Main {
                     if (option == 1) {
                         service.createReservation(scanner);
                     }
-//                    service.reserveRoom(scanner);
                     pause(scanner);
                     break;
                 case 2:
-//                    service.viewReservations();
+                    System.out.println("Enter reservation id: ");
+                    service.viewReservation(scanner.nextLine());
+                    pause(scanner);
                     break;
                 case 3:
-//                    service.cancelReservation(scanner);
+                    service.cancelReservation(scanner);
+                    pause(scanner);
                     break;
                 case 4:
-//                    service.updateReservation(scanner);
+                    service.updateReservation(scanner);
+                    pause(scanner);
                     break;
                 case 5:
                     System.out.println("Exit");
@@ -50,7 +53,7 @@ public class Main {
     private static void displayMenu() {
         System.out.println("\tHotel Reservation System");
         System.out.println("1. View Rooms");
-        System.out.println("2. View Reservations");
+        System.out.println("2. View Reservation Details");
         System.out.println("3. Cancel Reservation");
         System.out.println("4. Update Reservation");
         System.out.println("5. Exit");

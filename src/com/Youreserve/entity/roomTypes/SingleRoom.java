@@ -1,15 +1,15 @@
-package com.Youreserve.model.roomTypes;
+package com.Youreserve.entity.roomTypes;
 
 import com.Youreserve.enums.BedType;
-import com.Youreserve.model.Room;
+import com.Youreserve.entity.Room;
 
 public class SingleRoom extends Room {
     private int id;
     private BedType bedType;
     private boolean hasWorkspace;
 
-    public SingleRoom(String roomNumber, String roomType, int id , BedType bedType, boolean hasWorkspace) {
-        super(roomNumber, roomType);
+    public SingleRoom(String roomNumber, String roomType, double price , int id , BedType bedType, boolean hasWorkspace) {
+        super(roomNumber, roomType , price);
         this.id = id;
         this.bedType = bedType;
         this.hasWorkspace = hasWorkspace;
@@ -42,15 +42,14 @@ public class SingleRoom extends Room {
 
     @Override
     public String toString() {
-        return  "\t\t--------------------------------"+"\n" +
-                "\t\t**ROOM TYPE**   : " + roomType.toUpperCase() + "\n" +
-                "\t\t--------------------------------"+"\n" +
+        return  "\t\t-----------------------------------------------"+"\n" +
+                "\u001B[34m\t\tROOM TYPE   : " + roomType.toUpperCase() + "\t\tPrice : " + price + "MAD" + "\n\u001B[0m"+
+                "\t\t-----------------------------------------------"+"\n" +
                 "\t\tRoom Number     : " + roomNumber + "\n" +
                 "\t\tBed Type        : " + bedType + "\n" +
                 "\t\tHas Workspace   : " + (hasWorkspace ? "Yes" : "No") + "\n" +
                 "\t\tAvailability    : " + (isAvailable ? "Available" : "Occupied") + "\n" +
-                "\t\tRoom Type       : " + roomType + "\n" +
-                "\t\t------------------------------";
+                "\t\t-----------------------------------------------";
     }
 
 }
